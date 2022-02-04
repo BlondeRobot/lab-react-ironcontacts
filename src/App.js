@@ -21,31 +21,36 @@ function App() {
         </a>
       </header>
       <h1>IronContacts</h1>
-      <table className='contacts-table'>
+      <table className="contacts-table">
         <thead>
           <tr>
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
+            <th>Won an Oscar</th>
+            <th>Won an Emmy</th>
           </tr>
         </thead>
         <tbody>
           {contactList.map((contact) => {
-           return ( 
-            <tr key = {contact.id}>
-              <td>
-                <img src={contact.pictureUrl} alt="contact-pic" height="50px" />
-              </td>
-              <td>{contact.name}</td>
-              <td>{contact.popularity.toFixed(2)}</td>
-            </tr>
-           )
+            return (
+              <tr key={contact.id}>
+                <td>
+                  <img
+                    src={contact.pictureUrl}
+                    alt="contact-pic"
+                    height="50px"
+                  />
+                </td>
+                <td>{contact.name}</td>
+                <td>{contact.popularity.toFixed(2)}</td>
+                <td>{contact.wonOscar ? "🏆" : null}</td>
+                <td>{contact.wonEmmy ? "🏆" : null}</td>
+              </tr>
+            );
           })}
         </tbody>
       </table>
-
-      
-
     </div>
   );
 }
