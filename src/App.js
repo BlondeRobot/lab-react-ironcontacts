@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import contacts from "./contacts.json";
 
 function App() {
+  const contactList = [...contacts].slice(0,4)
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +20,32 @@ function App() {
           Learn React
         </a>
       </header>
+      <h1>IronContacts</h1>
+      <table className='contacts-table'>
+        <thead>
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contactList.map((contact) => {
+           return ( 
+            <tr key = {contact.id}>
+              <td>
+                <img src={contact.pictureUrl} alt="contact-pic" height="50px" />
+              </td>
+              <td>{contact.name}</td>
+              <td>{contact.popularity.toFixed(2)}</td>
+            </tr>
+           )
+          })}
+        </tbody>
+      </table>
+
+      
+
     </div>
   );
 }
