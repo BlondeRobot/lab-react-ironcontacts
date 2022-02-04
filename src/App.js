@@ -1,9 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-import contacts from "./contacts.json";
+import contactsData from "./contacts.json";
+import React, { useState } from "react";
 
 function App() {
-  const contactList = [...contacts].slice(0,4)
+  const contactList = [...contactsData].slice(0,5)  
+  const [existingContacts, setContact] = useState(contactList);
+
+  const insertRandomContact = () => {
+     let remainingContacts = [...contactsData].slice(5, contactsData.length - 1);
+        const randomIndex = Math.floor(Math.random() * remainingContacts.length);
+        const randomContact = remainingContacts.splice(randomIndex, 1)[0];
+        setContact([...existingContacts, randomContact]);
+   };
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +30,7 @@ function App() {
         </a>
       </header>
       <h1>IronContacts</h1>
+      <button onClick={() => insertRandomContact()}>Add Random Contact</button>
       <table className="contacts-table">
         <thead>
           <tr>
