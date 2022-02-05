@@ -11,10 +11,19 @@ function App() {
      let remainingContacts = [...contactsData].slice(5, contactsData.length - 1);
         const randomIndex = Math.floor(Math.random() * remainingContacts.length);
         const randomContact = remainingContacts.splice(randomIndex, 1)[0];
-        console.log(randomContact)
         setContact([...existingContacts, randomContact]);
-        console.log(setContact)
    };
+
+  const sortByPopularity = () => {
+        setContact([...existingContacts].sort((a, b) => b.popularity - a.popularity))
+  }
+  
+  const deleteContact = (contactId) => {
+    setContact([...existingContacts].filter(contact => contact.id !== contactId))
+  
+
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -33,6 +42,8 @@ function App() {
       </header>
       <h1>IronContacts</h1>
       <button onClick={() => insertRandomContact()}>Add Random Contact</button>
+      <button onClick={() => sortByPopularity()}>Sort By Popularity</button>
+
       <table className="contacts-table">
         <thead>
           <tr>
@@ -41,6 +52,7 @@ function App() {
             <th>Popularity</th>
             <th>Won an Oscar</th>
             <th>Won an Emmy</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +70,9 @@ function App() {
                 <td>{contact.popularity.toFixed(2)}</td>
                 <td>{contact.wonOscar ? "🏆" : null}</td>
                 <td>{contact.wonEmmy ? "🏆" : null}</td>
+                <td>
+                  <button onClick={() => deleteContact(contact.id)}>Delete</button>
+                </td>
               </tr>
             );
           })}
