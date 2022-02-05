@@ -11,7 +11,9 @@ function App() {
      let remainingContacts = [...contactsData].slice(5, contactsData.length - 1);
         const randomIndex = Math.floor(Math.random() * remainingContacts.length);
         const randomContact = remainingContacts.splice(randomIndex, 1)[0];
+        console.log(randomContact)
         setContact([...existingContacts, randomContact]);
+        console.log(setContact)
    };
   return (
     <div className="App">
@@ -42,7 +44,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {contactList.map((contact) => {
+          {existingContacts.map((contact) => {
             return (
               <tr key={contact.id}>
                 <td>
